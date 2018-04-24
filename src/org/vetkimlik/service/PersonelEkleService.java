@@ -1,5 +1,6 @@
 package org.vetkimlik.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,16 @@ public class PersonelEkleService {
 	{
 		getKisiEkle().kisiekle(personel);
 	}
+	
+	public List<Personel> dene()
+	{
+		List<Personel> p = new ArrayList<Personel>();
+		p.add(new Personel("t","e"));
+		p.add(new Personel("þ","h"));
+		
+		return p;
+	}
+	
+	
 	
 }

@@ -1,4 +1,4 @@
-package org.vetkimlik.hibernateutil;
+package org.vetkimlik.hbrnteutil;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.vetkimlik.dao.IKisiEkle;
-import org.vetkimlik.hibernateutil.HibernateUtil;
+import org.vetkimlik.hbrnteutil.HibernateUtil;
 import org.vetkimlik.model.Personel;
 
 @Repository
