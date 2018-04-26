@@ -41,23 +41,12 @@
 </listener>
 
 
-
-
     <context-param>
     <param-name>resteasy.scan</param-name>
     <param-value>true</param-value>
   </context-param>
   
-  <!--  BU AYAR TEK KISILIK  SERVIS ICIN DURUM -->
-  <!-- 
-  <context-param>
-    <param-name>resteasy.resources</param-name>
-    <param-value>
-    com.istanbul.bankalar.KisiBilgileri
-    </param-value>
-  </context-param>
-  -->
-  <context-param>
+    <context-param>
     <param-name>resteasy.servlet.mapping.prefix</param-name>
     <param-value>/rest</param-value>
   </context-param>
@@ -68,7 +57,7 @@
   </listener>
   <servlet>
   
-    <servlet-name>resteasy-servlet</servlet-name>
+    <servlet-name>ayar-servlet</servlet-name>
     <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
     
     <!--  BU AYAR RESTEASY DE BIRDEN FAZLA SERVISI tanıtmak ıcın YAPILAN KISIM -->
@@ -81,10 +70,12 @@
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>resteasy-servlet</servlet-name>
+    <servlet-name>ayar-servlet</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
-  
+ 
+
+
 
 
 

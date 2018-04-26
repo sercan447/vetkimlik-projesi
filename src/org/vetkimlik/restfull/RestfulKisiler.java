@@ -2,8 +2,6 @@ package org.vetkimlik.restfull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,31 +11,28 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.WebApplicationContext;
 import org.vetkimlik.model.Personel;
-import org.vetkimlik.restful.config.SpringApplicationContext;
 import org.vetkimlik.service.PersonelEkleService;
 
-
-@Service
-@Path("/kisilerimiz")
-public class RestfulKisiler {
+//@Aspect
+@Component
+@Path("kisilerimiz")
+public class RestfulKisiler /*implements INow*/{
 
 	@Autowired
 	private PersonelEkleService pers;
-	
-	
-	
+		
 	public PersonelEkleService getPers() {
 		return pers;
 	}
@@ -77,33 +72,44 @@ public class RestfulKisiler {
 		return Response.status(200).entity(per).build();
 	}
 	
+
 	@GET
 	@Path("/kisi2")
 	@Produces(MediaType.APPLICATION_XML)
-	public Response getkisiler2()
+	public Response gemi2()
 	{
 		Personel per = new Personel("ziya","gokalp");
 		return Response.status(200).entity(per).build();
 	}
 	
+	
 
 	@GET
+	@Path("/kisi3")
+	@Produces(MediaType.TEXT_HTML)
+		public String gemi() {
+			
+			return getPers().duman();
+		}
+	//@After("execution(* org.vetkimlik.aop.Deneme.calistir())")
+	@GET
 	@Path("/kisiler")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Personel> sahte()
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Personel> sahtexml()
 	{
-	/*List<Personel> per = new ArrayList<Personel>();
-		per.add(new Personel("a","b"));
-		per.add(new Personel("c","d"));
-		per.add(new Personel("e","f"));
-//	return per;*/
+		/*SessionFactory sessionfactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionfactory.openSession();
+		Criteria criter = session.createCriteria(Personel.class);
+		List<Personel> pers = criter.add(Restrictions.gt("id",2)).list();
+	*/
 		
-	PersonelEkleService ser = new PersonelEkleService();
-		//ApplicationContext context = new FileSystemXmlApplicationContext("/WebContent/WEB-INF/ayar-servlet.xml");
-		//PersonelEkleService ser = (PersonelEkleService) context.getBean(PersonelEkleService.class);
-		
-		return ser.dene();
+		Criteria criter = VeritabaniConnect.baglanti().createCriteria(Personel.class);
+		List<Personel> pers = criter.add(Restrictions.gt("id", 1)).list();
+
+		return pers;
+
 	}
-	
+
+
 	
 }

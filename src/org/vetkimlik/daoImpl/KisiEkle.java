@@ -2,6 +2,7 @@ package org.vetkimlik.daoImpl;
 
 import java.util.List;
 
+import org.aspectj.lang.annotation.After;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -31,7 +32,7 @@ public class KisiEkle implements IKisiEkle{
 	}
 
 
-
+	
 	@Override
 	public List<Personel> listele() {
 	
