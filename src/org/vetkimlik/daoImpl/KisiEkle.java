@@ -3,6 +3,8 @@ package org.vetkimlik.daoImpl;
 import java.util.List;
 
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.vetkimlik.dao.IKisiEkle;
 import org.vetkimlik.hbrnteutil.HibernateUtil;
 import org.vetkimlik.model.Personel;
+
 
 @Repository
 public class KisiEkle implements IKisiEkle{
@@ -32,7 +35,6 @@ public class KisiEkle implements IKisiEkle{
 	}
 
 
-	
 	@Override
 	public List<Personel> listele() {
 	
@@ -43,8 +45,7 @@ public class KisiEkle implements IKisiEkle{
 		
 		return pers;
 	}
-
-
+	
 	@Override
 	public void kisiekle(Personel personel) {
 		Session session = getHibernateutil().getSessionFactory().openSession();

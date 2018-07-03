@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	
+	
+	<security:http auto-config="true" use-expressions="true">
+	
+		<security:intercept-url pattern="/giris.xhtml" access="permitAll" />
+		<security:intercept-url pattern="/admingiris.xhtml" access="permitAll" />
+		<security:intercept-url pattern="/resources/**" access="permitAll"  />
+		<security:intercept-url pattern="/anasayfa.xhtml" access="isAuthenticated()" />
+		
+		<security:form-login login-page="/admingiris.xhtml"	
+							 username-parameter="kullanici_eposta"
+							 password-parameter="kullanici_parola"
+							 login-processing-url="/admingiris.xhtml"
+							 authentication-failure-url="/admingiris.xhtml"  />
+		<security:logout logout-success-url="/" />
+		<security:remember-me  user-service-ref="jdbcUserService" key="benimKey" remember-me-parameter="hatirlabeni" />
+		<security:csrf disabled="true" />
+	</security:http>
+	
+	<security:global-method-security secured-annotations="enabled" />	
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="sercan" password="199144" authorities="admin" />
+			</security:user-service>
+		</security:authentication-provider>
+		
+		
+		<security:authentication-provider>
+			<security:jdbc-user-service id="jdbcUserService"  data-source-ref="dataSource"   />
+			<security:password-encoder  ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+	
+	
+</beans>

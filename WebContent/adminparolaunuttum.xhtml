@@ -2,15 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+      xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head>
-
-        <link rel="shortcut icon" href="resources/assets/images/favicon_1.ico"/>
-
-        <title>Vetkimlik Yönetim Sistemi</title>
-		
+		<link rel="shortcut icon" href="resources/assets/images/favicon_1.ico"/>
         <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="resources/assets/css/core.css" rel="stylesheet" type="text/css"/>
         <link href="resources/assets/css/icons.css" rel="stylesheet" type="text/css"/>
@@ -18,6 +13,7 @@
         <link href="resources/assets/css/pages.css" rel="stylesheet" type="text/css"/>
         <link href="resources/assets/css/menu.css" rel="stylesheet" type="text/css"/>
         <link href="resources/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+
 
         <script src="resources/assets/js/modernizr.min.js"></script>
 <script>
@@ -30,59 +26,42 @@
   ga('send', 'pageview');
 
 </script>
-
-
 </h:head> 
 <h:body> 
-	   <!-- Begin page -->
-        <div id="wrapper">
-        
-         
-			<ui:insert name="ekbar">
-				<ui:include src="/sablonlar/admin-layout/bar.xhtml" />
-			</ui:insert>	
-		
-			<ui:insert name="eksidebar">
-				<ui:include src="/sablonlar/admin-layout/sidebar.xhtml" />
-			</ui:insert>
-            
-        	<ui:insert name="ekicerik">
-        	Geçirilen Paramtere : #{sayfaismim}
-        		<ui:include src="/sablonlar/admin-layout/icerik.xhtml"/>
-        	</ui:insert>
-        			
-        	<ui:insert name="ekfooter">
-        		<ui:include src="/sablonlar/admin-layout/footer.xhtml" />
-        	</ui:insert>
-				
+ <div class="wrapper-page">
+            <div class="panel panel-color panel-primary panel-pages">
+
+                <div class="panel-heading bg-img"> 
+                    <div class="bg-overlay"></div>
+                    <h3 class="text-center m-t-10 text-white"> Parola Sıfırlama Merkezi </h3>
+                </div> 
+
+                <div class="panel-body">
+                 <form method="post" action="#" role="form" class="text-center"> 
+                    <div class="alert alert-info alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        Sizi Tanıyabilmemiz için Lütfen <b>E-Posta</b> adresinizi girerek 
+                        mailinize gelecek olan iletiyi bekleyiniz.
+                        
+                    </div>
+                    <div class="form-group m-b-0"> 
+                        <div class="input-group"> 
+                            <input type="email" class="form-control input-lg" placeholder="E-Posta" required=""/> 
+                            <span class="input-group-btn"> 
+                            <button type="submit" class="btn btn-lg btn-primary waves-effect waves-light">İleti Gönder</button> 
+                            </span> 
+                        </div> 
+                    </div> 
+                    
+                </form>
+
+                </div>                                 
                 
-         </div>
-
-            <!-- Right Sidebar -->
-            <div class="side-bar right-bar nicescroll">
-                <h4 class="text-center">Chat</h4>
-                <div class="contact-list nicescroll">
-                    <ul class="list-group contacts-list">
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    
-                                </div>
-                                <span class="name">Chadengle</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                      
-                    </ul>
-                </div>
             </div>
-            <!-- /Right-bar -->
-
-
-        <!-- END wrapper -->
-
-        <script>
+        </div>
+        
+             
+    	<script>
             var resizefunc = [];
         </script>
 
@@ -99,6 +78,5 @@
         <script src="resources/assets/js/jquery.scrollTo.min.js"></script>
 
         <script src="resources/assets/js/jquery.app.js"></script>
-
 </h:body> 
 </html>

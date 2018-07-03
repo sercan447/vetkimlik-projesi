@@ -9,6 +9,7 @@
 <h:body> 
 		<ui:composition template="/sablonlar/admin-layout/hazirsablon.xhtml">
 			
+			 
 			<ui:define name="ekicerik">
                  
             <div class="content-page">
@@ -18,22 +19,27 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Boş Sayfa</h4>
-                                <!-- 
-                                <ol class="breadcrumb pull-right">
-                                    <li><a href="#">Sayfalar</a></li>
-                                    <li class="active">Anasayfa</li>
-                                </ol>
-                                -->
+                                <h4 class="pull-left page-title">
+                                	
+                     
+                                	 <ui:param name="sayfaismim" value="Ana sayfa"></ui:param>
+                                </h4>
                             </div>
                         </div>
                         <!--  ICERIK GIRILECEGI YER -->
+                        
+                        <h:outputLabel value="#{msg['label.title']}" />
+                        <h:form>
+							<h:commandButton action="#{kisiEkleBean.changeLanguage('en')}" value="eng" />
+							<h:commandButton action="#{kisiEkleBean.changeLanguage('fr')}" value="fr" />
+						</h:form>
+				
 							
 							<h:panelGrid columns="1">
-			
+					
 							<p:dataTable var="el" value="#{kisiEkleBean.li()}">
 								
-								<p:column headerText="No">
+								<p:column headerText="No">	
 									<h:outputText value="#{el.id}"></h:outputText>
 								</p:column>
 							

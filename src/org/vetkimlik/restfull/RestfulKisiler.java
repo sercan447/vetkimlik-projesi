@@ -2,6 +2,8 @@ package org.vetkimlik.restfull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,11 +23,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.FacesRequestAttributes;
+import org.springframework.web.jsf.FacesContextUtils;
 import org.vetkimlik.model.Personel;
 import org.vetkimlik.service.PersonelEkleService;
 
-//@Aspect
+
 @Component
 @Path("kisilerimiz")
 public class RestfulKisiler /*implements INow*/{
@@ -91,7 +96,7 @@ public class RestfulKisiler /*implements INow*/{
 			
 			return getPers().duman();
 		}
-	//@After("execution(* org.vetkimlik.aop.Deneme.calistir())")
+	
 	@GET
 	@Path("/kisiler")
 	@Produces(MediaType.APPLICATION_XML)
@@ -105,6 +110,8 @@ public class RestfulKisiler /*implements INow*/{
 		
 		Criteria criter = VeritabaniConnect.baglanti().createCriteria(Personel.class);
 		List<Personel> pers = criter.add(Restrictions.gt("id", 1)).list();
+		
+
 
 		return pers;
 

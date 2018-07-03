@@ -24,7 +24,7 @@ public class PersonelEkleService {
 	}
 	
 
-	public List<Personel> kisileriGoster() {
+	public List<Personel> kisileriGoster(String al) {
 		
 		List<Personel> p = getKisiEkle().listele();
 		return p;
